@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+#
+# A script that renders an yr.no js file and returns the result as an image.
+#
+
+$tempdir = "/tmp/";
+
+# Get the PATH_INFO and create a lot of file names based on it.
+$pathinfo = $ENV{"PATH_INFO"};
+$baseFileName = $pathinfo;
+$baseFileName =~ tr/\//_/;
+$rawImage = $tempdir.$baseFileName."_raw.png";
+$image = $tempdir.$baseFileName.".png";
+$htmlFile = $tempdir.$baseFileName.".html";
+$jsName = "http://www.yr.no".$pathinfo.".js";
+
+# Create an HTML file containing a script reference
+open(HTMLWITHSCRIPT, ">", $htmlFile);
+print HTMLWITHSCRIPT "<script type=\"text/javascript\" src=\"$jsName\"></script>";
+close(HTMLWITHSCRIPT);
+
+# Create the uncropped image
+system("xvfb-run --server-args=\"-screen 0, 200x200x24\" cutycapt --url=\"file://$htmlFile\" --out=$rawImage");
+# Crop the image
+system("pngtopnm $rawImage | pnmcrop -bottom | pnmtopng > $image");
+
+# Return the cropped image over HTTP
+print "Content-Type: image/png\n\n";
+
+open(IMAGE, '<', $image);
+print <IMAGE>;
+close(IMAGE);
