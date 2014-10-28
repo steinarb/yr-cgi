@@ -8,7 +8,7 @@ $tempdir = "/tmp/";
 # Get the PATH_INFO and create a lot of file names based on it.
 $pathinfo = $ENV{"PATH_INFO"};
 $baseFileName = $pathinfo;
-$baseFileName =~ tr/\//_/;
+$baseFileName =~ tr/\///d;
 $rawImage = $tempdir.$baseFileName."_raw.png";
 $image = $tempdir.$baseFileName.".png";
 $htmlFile = $tempdir.$baseFileName.".html";
