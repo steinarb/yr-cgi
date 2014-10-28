@@ -20,7 +20,7 @@ print HTMLWITHSCRIPT "<script type=\"text/javascript\" src=\"$jsName\"></script>
 close(HTMLWITHSCRIPT);
 
 # Create the uncropped image
-system("xvfb-run --server-args=\"-screen 0, 200x200x24\" cutycapt --url=\"file://$htmlFile\" --out=$rawImage");
+system("xvfb-run --server-args=\"-screen 0, 200x200x24\" cutycapt --url=\"file:///$htmlFile\" --out=$rawImage");
 # Crop the image
 system("pngtopnm $rawImage | pnmcrop -bottom | pnmtopng > $image");
 
