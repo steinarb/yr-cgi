@@ -1,0 +1,33 @@
+* Image generator for yr.no weather reports
+** Introduction
+
+This is a CGI script that takes a pathinfo argument that is the local part of an [[http://www.yr.no/verdata/1.5543273][yr.no embeddable javascript,]] with the exclusion of the ".js" extension, and renders the javascript as a PNG file, and then returns the rendered javascript as a PNG image.
+
+** Usage example
+
+For a script like
+#+begin_src html
+  <script type="text/javascript" src="www.yr.no/sted/Norge/Akershus/Bærum/Skui/ekstern_boks_stripe.js">
+#+end_src
+create an <img> reference like this:
+#+begin_src html
+  <img href="http://mysite.com/cgi-bin/yr-as-image/sted/Norge/Akershus/Bærum/Skui/ekstern_boks_stripe" alt="" />
+#+end_src
+
+** Requirements
+The CGI script is intended to run with an [[http://httpd.apache.org/][apache httpd]] on a unix-ish system (*BSD, GNU/linux, or even an old-fashioned linux if they still exist), and the requirements are:
+ - [[http://httpd.apache.org/][perl]]
+ - [[http://cutycapt.sourceforge.net/][CutyCapt]] a program that can render an HTML page as an image
+ - [[http://netpbm.sourceforge.net/][netpbm]] (to crop the image rendered by CutyCapt)
+
+** Installation
+
+Instructions:
+ - Download the yr-as-image script and save it into the cgi-bin directory
+ - Make the yr-as-image script executable:
+   : chmod +x yr-as-image
+
+** Known issues
+
+The [[https://packages.debian.org/wheezy/cutycapt][CutyCapt version of debian stable]] creates a background colour that pnmcrop isn't able to crop away.  However, [[https://packages.debian.org/jessie/cutycapt][the CutyCapt version of debian testing]] creates images with a croppable background colour, so hopefully this will right itself in time.
+
