@@ -15,17 +15,21 @@ create an <img> reference like this:
 #+end_src
 
 ** Requirements
-The CGI script is intended to run with an [[http://httpd.apache.org/][apache httpd]] on a unix-ish system (*BSD, GNU/linux, or even an old-fashioned linux if they still exist), and the requirements are:
- - [[http://httpd.apache.org/][perl]]
+The CGI script is intended to run with an [[http://httpd.apache.org/][apache httpd]] (it will run on any HTTP server supporting CGI scripts) on a unix-ish system (*BSD, GNU/linux, or even an old-fashioned linux if they still exist), and the requirements are:
+ - [[https://www.perl.org/][perl]]
  - [[http://cutycapt.sourceforge.net/][CutyCapt]] a program that can render an HTML page as an image
+ - [[http://en.wikipedia.org/wiki/Xvfb][Xvfb]] to be able to run CutyCapt headless
  - [[http://netpbm.sourceforge.net/][netpbm]] (to crop the image rendered by CutyCapt)
 
 ** Installation
 
 Instructions:
- - Download the yr-as-image script and save it into the cgi-bin directory
+ - [[https://github.com/steinarb/yr-cgi/raw/master/yr-as-image][Download the yr-as-image script]] and save it into the cgi-bin directory
  - Make the yr-as-image script executable:
    : chmod +x yr-as-image
+
+On a debian or debian-ish (i.e. Ubuntu, mint, skolelinux) system, the dependencies can be added with the command:
+: sudo apt-get install apache2 perl cutycapt xvfb netpbm
 
 ** Known issues
 
