@@ -22,7 +22,7 @@ close(HTMLWITHSCRIPT);
 # Create the uncropped image
 system("xvfb-run --server-args=\"-screen 0, 200x200x24\" cutycapt --url=\"file:///$htmlFile\" --out=$rawImage");
 # Crop the image
-system("pngtopnm $rawImage | pnmcrop | pnmtopng > $image");
+system("pngtopnm $rawImage | pnmcut -bottom 500 | pnmcrop | pnmtopng > $image");
 
 # Return the cropped image over HTTP
 print "Content-Type: image/png\n\n";
