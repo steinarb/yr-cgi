@@ -30,8 +30,3 @@ Instructions:
 
 On a debian or debian-ish (i.e. Ubuntu, mint, skolelinux) system, the dependencies can be added with the command:
 : sudo apt-get install apache2 perl cutycapt xvfb netpbm
-
-** Known issues
-
-The [[https://packages.debian.org/wheezy/cutycapt][CutyCapt version of debian stable]] creates a background colour that pnmcrop isn't able to crop away.  However, [[https://packages.debian.org/jessie/cutycapt][the CutyCapt version of debian testing]] creates images with a croppable background colour, so hopefully this will right itself in time.
-
