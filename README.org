@@ -11,7 +11,7 @@ For a script like
 #+end_src
 create an <img> reference like this:
 #+begin_src html
-  <img href="http://mysite.com/cgi-bin/yr-as-image/sted/Norge/Akershus/Bærum/Skui/ekstern_boks_stripe" alt="" />
+  <img src="http://mysite.com/cgi-bin/yr-as-image/sted/Norge/Akershus/Bærum/Skui/ekstern_boks_stripe" alt="" />
 #+end_src
 
 ** Requirements
