@@ -25,6 +25,9 @@ system("xvfb-run --server-args=\"-screen 0, 200x200x24\" cutycapt --url=\"file:/
 system("pngtopnm $rawImage | pnmcut -bottom 500 | pnmcrop | pnmtopng > $image");
 
 # Return the cropped image over HTTP
+print "Expires: Thu, 01 Dec 1994 16:00:00 GMT\n";
+print "Cache-Control: no-cache\n";
+print "Pragma: no-cache\n";
 print "Content-Type: image/png\n\n";
 
 open(IMAGE, '<', $image);
