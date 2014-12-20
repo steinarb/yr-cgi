@@ -7,6 +7,7 @@ $tempdir = "/tmp/";
 
 # Get the PATH_INFO and create a lot of file names based on it.
 $pathinfo = $ENV{"PATH_INFO"};
+$pathinfo =~ s#^.*/yr(/sted.*$)#\1#; # Strip leading unique key
 $baseFileName = $pathinfo;
 $baseFileName =~ tr/\///d;
 $rawImage = $tempdir.$baseFileName."_raw.png";
